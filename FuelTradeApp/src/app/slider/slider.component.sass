@@ -1,11 +1,86 @@
+$color: #1b3545
+$opacity: 0.5
+$blur: 10px
+$arrow-move-distance: 10px // Расстояние перемещения стрелки
+$transition-duration: 0.3s// Длительность анимации
+%font_connect
+  font-family: "Rubik", 
+  sans-seriffont-optical-sizing: auto, 
+  font-style: normal
+.width-1000
+  width: 1000px
+.background-color-dark-teal 
+  background-color: rgba(var(--color-dark-teal-rgb), var(--color-opacity))
 .text-container
   display: flex
   flex-direction: column
   align-self: center
   align-items: center
   justify-content: center
-  max-width: 1000px
   max-height: 304px
-  background: #0066b2
+  margin-bottom: 96px
+  background-color: rgba(red($color), green($color), blue($color), $opacity)
+  backdrop-filter: blur($blur)
+  -webkit-backdrop-filter: blur($blur)
+  border-radius: 16px
   .text-container-inner
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 920px
     padding: 48px 40px 40px 40px
+    h2
+      @extend %font_connect
+      font-weight: 900
+      font-size: 4.0rem
+      color: #fff
+      margin:0 0 24px 0
+      line-height: 4.8rem
+      letter-spacing: -0.013em
+    .description
+        @extend %font_connect
+        max-width: 600px
+        color: #fff
+        font-size: 17px
+        line-height: 30px
+        letter-spacing: 0.008em
+        text-align: center
+    .cta-container
+      padding-top: 40px
+      width: 100%
+      display: flex
+      flex-direction: row
+      justify-content: center
+      span
+        left: 0
+        display: flex
+        align-items: center
+        justify-content: center
+        max-width: 16px
+        max-height: 16px
+        margin-right: 13px
+        img
+          padding-top: 4px
+          width: 16px
+          height: 16px
+      a
+        @extend %font_connect
+        font-weight: 600
+        text-decoration: none
+        color: #fff
+        position: relative
+        &::after
+            content: ''
+            position: absolute
+            left: 0
+            bottom: 0
+            width: 100%
+            height: 1px
+            background-color: #fff
+            transition: width 0.3s ease-in
+        &:hover::after
+            transform: scaleX(1)
+            transition: 0.3s ease-in // Увеличиваем масштаб до 100% (появляется)
+        &:not(:hover)::after
+            transform: scaleX(0)
+            transition: 0.3s ease-in // Уменьшаем масштаб до 0 (исчезает)  

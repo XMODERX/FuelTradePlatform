@@ -2,7 +2,34 @@
 $white: #ffffff
 $header-bg-color: black
 $header-height: 1080px
-// Глобальные стили для хедера
+%font_for_a
+    font-family: "Rubik", sans-serif
+    font-optical-sizing: auto
+    font-weight: 400
+    font-style: normal
+    font-size: 0.9rem
+    color: $white
+    text-decoration: none
+a
+    @extend %font_for_a
+    text-decoration: none
+    color: #fff
+    position: relative 
+    &::after
+        content: ''
+        position: absolute
+        left: 0
+        bottom: 0
+        width: 100%
+        height: 1px
+        background-color: $white
+        transition: width 0.3s ease-in
+    &:hover::after
+        transform: scaleX(1)
+        transition: 0.3s ease-in // Увеличиваем масштаб до 100% (появляется)
+    &:not(:hover)::after
+        transform: scaleX(0)
+        transition: 0.3s ease-in // Уменьшаем масштаб до 0 (исчезает)
 header
     display: flex
     justify-content: space-between
@@ -12,6 +39,7 @@ header
     height: $header-height 
     width: 100%
     overflow: hidden
+    box-shadow: 0px 100px 100px -22px rgba(0, 0, 0, 0.6) inset
 
 .background-video
     position: absolute
@@ -24,8 +52,6 @@ header
 .overlay
     z-index: -1 
     color: white 
-    padding: 20px 
-    border-radius: 5px 
     
 .overlay
     position: absolute
@@ -34,12 +60,11 @@ header
     width: 100%
     height: 100%
     max-height: 1080px
-    background-color: rgba(0, 0, 0, 0.5) 
 
 nav
     display: flex
     width: 2544px
-    min-height: 62px
+    max-height: 70px
     position: relative
     z-index: 1
     .nav-container
@@ -56,22 +81,27 @@ nav
         padding: 0
         margin: 0 auto
         min-height: 0
-        .nav-list-right
-            display: flex
-            justify-content: flex-end
         .nav-list-left
             display: flex
             justify-content: flex-start    
+        .nav-list-right
+            display: flex
+            justify-content: flex-end
+            .search
+                a
+                    img
+                        width: 25px
+                        height: 25px
         ul
             list-style: none
-            display: flex
             column-gap: 24px
             align-items: center
             padding: 0
             margin: 0
             width: 576px
+            height: 100%
             li
-                margin-left: 20px
+                margin: 0
                 a
                     font-family: "Rubik", sans-serif
                     font-optical-sizing: auto
@@ -90,15 +120,18 @@ nav
                         width: 100%
                         height: 1px
                         background-color: $white
-                        transition: width 0.6s ease-in
+                        transition: width 0.3s ease-in
                     // Эффект при наведении
                     &:hover::after
                         transform: scaleX(1)
-                        transition: 0.5s ease-in // Увеличиваем масштаб до 100% (появляется)
+                        transition: 0.3s ease-in // Увеличиваем масштаб до 100% (появляется)
                     &:not(:hover)::after
                         transform: scaleX(0)
                         transition: 0.3s ease-in // Уменьшаем масштаб до 0 (исчезает)
 .logo
+    display: flex
+    align-items: center
+    justify-content: center
     max-width: 96px
     font-size: 24px 
     font-weight: bold 
